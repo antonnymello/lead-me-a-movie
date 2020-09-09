@@ -23,13 +23,11 @@ export class MoviesComponent implements OnInit {
   }
 
   getMovies() {
-    this.movies = this.moviesService
-      .getMovies(this.movieName)
-      .subscribe((paramName) => {
-        this.actualPage = 1;
-        this.totalPages = paramName.total_pages;
-        this.movies = paramName.results;
-      });
+    this.moviesService.getMovies(this.movieName).subscribe((paramName) => {
+      this.actualPage = 1;
+      this.totalPages = (paramName as any).total_pages;
+      this.movies = (paramName as any).results;
+    });
   }
 
   getImage(path: string) {

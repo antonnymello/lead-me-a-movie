@@ -25,7 +25,7 @@ export class MoviesService {
     if (query) {
       return this.http.get(search);
     }
-    return alert('Nada encontrado!');
+    return null;
   }
 
   discoverMovies(page: number) {
