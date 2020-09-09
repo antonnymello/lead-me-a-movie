@@ -1,0 +1,20 @@
+<div class="container">
+  <div *ngFor="let movie of movies" class="movie-card">
+    <div class="movie-header"></div>
+    <!--movie-header-->
+    <div class="movie-content">
+
+
+      <div class="movie-content-header">
+        <img [src]="getImage(movie.poster_path)" class="posterPath">
+        <h3 class="movie-title">{{movie.title}}</h3>
+
+      </div>
+      <div class="movie-info">{{movie.overview}}</div>
+    </div>
+    <!--movie-content-->
+  </div>
+  <!--movie-card-->
+
+</div>
+<!--container-->
