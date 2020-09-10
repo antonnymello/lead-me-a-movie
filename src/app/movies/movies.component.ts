@@ -15,8 +15,9 @@ export class MoviesComponent implements OnInit {
   movieName = 'string';
   imgUrl = 'https://image.tmdb.org/t/p/';
   imgSize = 'w500/';
+  overview: string;
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService) { }
 
   ngOnInit() {
     this.getMovies();
@@ -31,8 +32,10 @@ export class MoviesComponent implements OnInit {
   }
 
   getImage(path: string) {
-    let imagems = `${this.imgUrl}${this.imgSize}${path}`;
-
-    return imagems;
+    let images = `${this.imgUrl}${this.imgSize}${path}`;
+    if (images) {
+      return images;
+    }
+    return images;
   }
 }

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { MoviesComponent } from './../movies/movies.component';
@@ -11,7 +12,8 @@ import { MoviesService } from './../movies/movies.service';
 export class HeaderComponent implements OnInit {
   title = `LEAD me a Movie`;
 
-  constructor() {}
+  constructor(searchService: MoviesService) { }
 
-  ngOnInit(): void {}
+
+  ngOnInit(): void { }
 }
