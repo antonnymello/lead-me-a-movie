@@ -10,18 +10,23 @@ export class MoviesService {
   private discoverUrl = 'https://api.themoviedb.org/3/discover/movie';
   private apiKey = '1bb1429afba1d12438809321c1212a39';
   private language = 'pt-BR';
+  private query: null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getMovies(query: string = '', page: number = 1) {
     // let moviesURL = `${this.detailsUrl}popular?api_key=${this.apiKey}&language=${this.language}`;
-    if (query) {
+    if ((query = '')) {
       return this.discoverMovies(page);
     }
-    return this.searchMovies(query, page);
+    if (query) {
+      return this.searchMovies(query, page);
+    } else {
+      return this.discoverMovies(page);
+    }
   }
 
-  discoverMovies(page: number = 1000) {
+  discoverMovies(page: number) {
     let discover = `${this.discoverUrl}?api_key=${this.apiKey}&language=${this.language}&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`;
     return this.http.get(discover);
   }

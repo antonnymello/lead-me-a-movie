@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { MoviesService } from './movies.service';
 import { Movie } from './movie';
+import { DetailsComponent } from './../details/details.component';
 
 @Component({
   selector: 'app-movies',
@@ -17,7 +19,7 @@ export class MoviesComponent implements OnInit {
   imgSize = 'w500/';
   overview: string;
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService) {}
 
   ngOnInit() {
     this.getMovies();
