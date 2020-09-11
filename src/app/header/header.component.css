@@ -58,12 +58,13 @@ body {
   border-radius: 0 20px 20px 0;
   cursor: pointer;
   width: 16px;
-  height: 36px;
+  height: 37px;
 }
 
 .topnav .search-container img {
-  width: 22px;
-  margin-left: -10px;
+  width: 25px;
+  margin-left: -14px;
+  margin-bottom: 3px;
 }
 
 .topnav .search-container button:hover {

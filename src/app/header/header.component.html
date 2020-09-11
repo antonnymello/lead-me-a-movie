@@ -2,7 +2,7 @@
   <a class="active" routerlink="/movies.html">{{title}}</a>
   <div class="search-container">
     <form action="#">
-      <input type="text" placeholder="Busque por filmes..." name="search">
+      <input type="text" (input)="query= $event.target.value" placeholder="Busque por filmes..." name="search">
       <button type="submit"><img src="https://img.icons8.com/pastel-glyph/2x/search--v2.png" alt="lupa"></button>
     </form>
   </div>
