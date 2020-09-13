@@ -14,7 +14,7 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
-  getMovies(query: string = '', page: number = 1) {
+  getMovies(query: string = '', page: number) {
     // let moviesURL = `${this.detailsUrl}popular?api_key=${this.apiKey}&language=${this.language}`;
     if ((query = '')) {
       return this.discoverMovies(page);

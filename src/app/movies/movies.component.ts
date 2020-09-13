@@ -13,6 +13,7 @@ import { DetailsComponent } from './../details/details.component';
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   actualPage: number;
+  currentPage = 1;
   totalPages: number;
   movieName = 'string';
   imgUrl = 'https://image.tmdb.org/t/p/';
@@ -25,12 +26,18 @@ export class MoviesComponent implements OnInit {
     this.getMovies();
   }
 
+  pageUp = () => {
+    this.currentPage++;
+  };
+
   getMovies() {
-    this.moviesService.getMovies(this.movieName).subscribe((paramName) => {
-      this.actualPage = 1;
-      this.totalPages = (paramName as any).total_pages;
-      this.movies = (paramName as any).results;
-    });
+    this.moviesService
+      .getMovies(this.movieName, this.currentPage)
+      .subscribe((paramName) => {
+        this.actualPage = 1;
+        this.totalPages = (paramName as any).total_pages;
+        this.movies = (paramName as any).results;
+      });
   }
 
   getImage(path: string) {
