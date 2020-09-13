@@ -1,8 +1,11 @@
 export class Movie {
   constructor(
+    public page: number,
     public adult: boolean,
     public backdrop_path: string,
     public budget: number,
+    public total_results: number,
+    public total_pages: number,
     public genres: {
       id: number;
       name: string;
