@@ -10,7 +10,6 @@ export class MoviesService {
   private discoverUrl = 'https://api.themoviedb.org/3/discover/movie';
   private apiKey = '1bb1429afba1d12438809321c1212a39';
   private language = 'pt-BR';
-  private query: null;
 
   constructor(private http: HttpClient) {}
 
@@ -21,9 +20,8 @@ export class MoviesService {
     }
     if (query) {
       return this.searchMovies(query, page);
-    } else {
-      return this.discoverMovies(page);
     }
+    return this.discoverMovies(page);
   }
 
   discoverMovies(page: number) {

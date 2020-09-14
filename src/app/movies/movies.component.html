@@ -1,25 +1,29 @@
 <div class="row">
-  <div *ngFor="let movie of movies" class="col-sm-4">
+  <div *ngFor="let movie of movies" class="col-sm-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title" style="text-align: center;">{{movie.title}}</h4>
-        <hr>
-        <img *ngIf="movie.poster_path" [src]="getImage(movie.poster_path)" class="posterPath">
-        <img *ngIf="!movie.poster_path" class="posterPath" src="https://placehold.it/500x740">
+        <h4 class="card-title" style="text-align: center">
+          {{ movie.title }}
+        </h4>
+        <hr />
+        <img *ngIf="movie.poster_path" [src]="getImage(movie.poster_path)" class="posterPath" />
+        <img *ngIf="!movie.poster_path" class="posterPath" src="https://placehold.it/500x740" />
         <div class="movies-info">
-          Data de Lançamento: {{movie.release_date}} <span><img src="https://www.kindpng.com/picc/b/29/298871.png"
-              alt="logo-star">{{movie.vote_average}}</span>
+          Data de Lançamento: {{ movie.release_date }}
+          <span><img src="https://www.kindpng.com/picc/b/29/298871.png"
+              alt="logo-star" />{{ movie.vote_average }}</span>
         </div>
-        <p class="card-text" style="text-align: center;">{{movie.overview}}</p>
-        <a class="btn btn-primary" id="movie-details">Detalhes</a>
+        <p *ngIf="movie.overview" class="card-text" style="text-align: center">{{ movie.overview }}</p>
+        <p *ngIf="!movie.overview" class="card-text" style="text-align: center">Sem detalhes pra exibir!</p>
+
       </div>
     </div>
   </div>
 </div>
 
-
 <div class="pagination">
-  <button class="btn btn-primary">-</button>
-  <input type="text" [value]="getMovies(actualPage)" readonly>
-  <button class="btn btn-primary">+</button>
+  <input type="text" [value]="currentPage - 1" readonly />
+  <button class="btn btn-primary" (click)="getMovies($event)">
+    Próxima página >>
+  </button>
 </div>

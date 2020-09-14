@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { EventEmitter } from 'events';
 
 import { MoviesService } from './movies.service';
 import { Movie } from './movie';
-import { DetailsComponent } from './../details/details.component';
+import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
+import { Button } from 'protractor';
+import { R3TargetBinder } from '@angular/compiler';
 
 @Component({
   selector: 'app-movies',
@@ -11,30 +14,27 @@ import { DetailsComponent } from './../details/details.component';
   styleUrls: ['./movies.component.css'],
 })
 export class MoviesComponent implements OnInit {
-  movies: Movie[] = [];
-  actualPage: number;
-  currentPage = 1;
-  totalPages: number;
-  movieName = 'string';
-  imgUrl = 'https://image.tmdb.org/t/p/';
-  imgSize = 'w500/';
-  overview: string;
+  public movies: Movie[] = [];
+  public actualPage: number;
+  public currentPage: number = 1;
+  public totalPages: number;
+  public movieName = 'string';
+  public imgUrl = 'https://image.tmdb.org/t/p/';
+  public imgSize = 'w500/';
+  public overview: string;
 
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit() {
-    this.getMovies();
+    this.getMovies(1 && 0);
   }
 
-  pageUp = () => {
-    this.currentPage++;
-  };
-
-  getMovies() {
+  getMovies(value: number) {
     this.moviesService
       .getMovies(this.movieName, this.currentPage)
       .subscribe((paramName) => {
-        this.actualPage = 1;
+        value = this.currentPage++;
+        this.actualPage;
         this.totalPages = (paramName as any).total_pages;
         this.movies = (paramName as any).results;
       });

@@ -9,15 +9,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MoviesService } from './movies/movies.service';
-import { DetailsComponent } from './details/details.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    MoviesComponent,
-    DetailsComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent, MoviesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +19,7 @@ import { DetailsComponent } from './details/details.component';
     FormsModule,
     RouterModule,
   ],
+  exports: [MoviesComponent, HeaderComponent],
   providers: [MoviesService, HttpClient],
   bootstrap: [AppComponent],
 })
