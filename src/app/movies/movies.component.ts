@@ -15,18 +15,16 @@ import { R3TargetBinder } from '@angular/compiler';
 })
 export class MoviesComponent implements OnInit {
   public movies: Movie[] = [];
-  public actualPage: number;
   public currentPage: number = 1;
   public totalPages: number;
   public movieName = 'string';
   public imgUrl = 'https://image.tmdb.org/t/p/';
   public imgSize = 'w500/';
-  public overview: string;
 
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit() {
-    this.getMovies(1 && 0);
+    this.getMovies(undefined);
   }
 
   getMovies(value: number) {
@@ -34,7 +32,6 @@ export class MoviesComponent implements OnInit {
       .getMovies(this.movieName, this.currentPage)
       .subscribe((paramName) => {
         value = this.currentPage++;
-        this.actualPage;
         this.totalPages = (paramName as any).total_pages;
         this.movies = (paramName as any).results;
       });

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { MoviesComponent } from '../movies/movies.component';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,7 +8,6 @@ import { MoviesComponent } from '../movies/movies.component';
 })
 export class HeaderComponent implements OnInit {
   title = `LEAD me a Movie`;
-  query: string;
 
   constructor() {}
 
