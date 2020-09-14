@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MoviesService {
   private searchUrl = 'https://api.themoviedb.org/3/search/movie';
-  private detailsUrl = 'https://api.themoviedb.org/3/movie/';
   private discoverUrl = 'https://api.themoviedb.org/3/discover/movie';
   private apiKey = '1bb1429afba1d12438809321c1212a39';
   private language = 'pt-BR';
@@ -19,7 +18,7 @@ export class MoviesService {
       return this.discoverMovies(page);
     }
     if (query) {
-      return this.searchMovies(query, page);
+      return this.searchMovies(query);
     }
     return this.discoverMovies(page);
   }
@@ -29,8 +28,8 @@ export class MoviesService {
     return this.http.get(discover);
   }
 
-  searchMovies(query: string, page: number) {
-    let search = `${this.searchUrl}?api_key=${this.apiKey}&language=${this.language}&query=${query}&page=${page}&include_adult=false`;
+  searchMovies(query: string) {
+    let search = `${this.searchUrl}?api_key=${this.apiKey}&language=${this.language}&query=${query}&page=1&include_adult=false`;
 
     if (query) {
       return this.http.get(search);

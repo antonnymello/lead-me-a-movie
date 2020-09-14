@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EventEmitter } from 'events';
 
@@ -17,7 +17,7 @@ export class MoviesComponent implements OnInit {
   public movies: Movie[] = [];
   public currentPage: number = 1;
   public totalPages: number;
-  public movieName = 'string';
+  public movieName = '';
   public imgUrl = 'https://image.tmdb.org/t/p/';
   public imgSize = 'w500/';
 
@@ -27,11 +27,26 @@ export class MoviesComponent implements OnInit {
     this.getMovies(undefined);
   }
 
-  getMovies(value: number) {
+  pageUp() {
+    if (this.currentPage >= 1 && this.currentPage <= 500) {
+      return this.getMovies((this.currentPage += 1 - 1));
+    }
+  }
+
+  pageDown() {
+    if (this.currentPage > 0) {
+      return this.getMovies((this.currentPage -= 1 + 1));
+    }
+  }
+
+  getMovies(page: number) {
     this.moviesService
       .getMovies(this.movieName, this.currentPage)
       .subscribe((paramName) => {
-        value = this.currentPage++;
+        page = this.currentPage;
+        if (page >= 1 && page <= 500) {
+          this.currentPage++;
+        }
         this.totalPages = (paramName as any).total_pages;
         this.movies = (paramName as any).results;
       });
