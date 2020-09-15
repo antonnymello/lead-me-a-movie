@@ -14,10 +14,10 @@ import { R3TargetBinder } from '@angular/compiler';
   styleUrls: ['./movies.component.css'],
 })
 export class MoviesComponent implements OnInit {
+  @Input() currentPage: number = 1;
   public movies: Movie[] = [];
-  public currentPage: number = 1;
   public totalPages: number;
-  public movieName = '';
+  public movieName: string;
   public imgUrl = 'https://image.tmdb.org/t/p/';
   public imgSize = 'w500/';
 

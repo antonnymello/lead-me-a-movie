@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { MoviesComponent } from './../movies/movies.component';
 
 @Component({
   selector: 'app-header',
