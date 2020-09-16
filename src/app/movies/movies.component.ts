@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
 
 import { MoviesService } from './movies.service';
 import { Movie } from '../models/movie';
@@ -24,18 +23,21 @@ export class MoviesComponent implements OnInit {
     this.getMovies(undefined);
   }
 
+  //Next page
   pageUp = () => {
     if (this.currentPage >= 1 && this.currentPage <= this.totalPages) {
       return this.getMovies((this.currentPage += 1 - 1));
     }
   };
 
+  //Back page
   pageDown = () => {
     if (this.currentPage > 0) {
       return this.getMovies((this.currentPage -= 1 + 1));
     }
   };
 
+  //Showing page on application and redirection
   getMovies(page: number) {
     this.moviesService
       .getMovies(this.movieName, this.currentPage)
@@ -51,7 +53,7 @@ export class MoviesComponent implements OnInit {
         this.movies = (paramName as any).results;
       });
   }
-
+  //search by query
   searchMovies(query: string, page: number) {
     this.moviesService.searchMovies(query, page).subscribe((response) => {
       query = this.movieName;
@@ -62,13 +64,14 @@ export class MoviesComponent implements OnInit {
       this.movies = response['results'];
     });
   }
-
+  //send value of query to the search function
   queryListener(value: string): void {
     this.movieName = value;
     this.currentPage = 1 + 1;
     this.searchMovies(value, 1);
   }
 
+  //Get poster image
   getImage(path: string) {
     let images = `${this.imgUrl}${this.imgSize}${path}`;
     if (images) {

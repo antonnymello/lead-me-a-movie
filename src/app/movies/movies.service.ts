@@ -12,6 +12,7 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
+  //Redirects
   getMovies(query: string = '', page: number) {
     // let moviesURL = `${this.detailsUrl}popular?api_key=${this.apiKey}&language=${this.language}`;
     if ((query = '')) {
@@ -23,11 +24,13 @@ export class MoviesService {
     return this.discoverMovies(page);
   }
 
+  //Show the list of movies more recent by popularity
   discoverMovies(page: number) {
     let discover = `${this.discoverUrl}?api_key=${this.apiKey}&language=${this.language}&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`;
     return this.http.get(discover);
   }
 
+  //Get query and search results based on query
   searchMovies(query: string, page: number) {
     let search = `${this.searchUrl}?api_key=${this.apiKey}&language=${this.language}&query=${query}&page=${page}&include_adult=false`;
 
