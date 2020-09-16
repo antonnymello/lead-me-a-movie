@@ -1,4 +1,19 @@
-<div class="row">
+<!-- <div class="search-container">
+  <form>
+    <input type="text" placeholder="Busque por filmes..." name="search" #box (keyup.enter)="queryListener(box.value)">
+    <button type="submit"><img src="https://img.icons8.com/pastel-glyph/2x/search--v2.png" alt="lupa"
+        (click)="queryListener(box.value)"></button>
+  </form>
+</div> -->
+<div class="input-group input-group-lg">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-lg">Procure por Filmes:</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" #box
+    (keyup.enter)="queryListener(box.value)">
+</div>
+
+<div class=" row">
   <div *ngFor="let movie of movies" class="col-sm-3">
     <div class="card">
       <div class="card-body">
@@ -6,7 +21,8 @@
           {{ movie.title }}
         </h4>
         <hr />
-        <img *ngIf="movie.poster_path" [src]="getImage(movie.poster_path)" class="posterPath" />
+        <img *ngIf="movie.poster_path" [src]="getImage(movie.poster_path)" class="posterPath"
+          alt="'Poster do filme ' + {{movie.title}}" />
         <img *ngIf="!movie.poster_path" class="posterPath" src="https://placehold.it/500x740" />
         <div class="movies-info">
           Data de Lançamento: {{ movie.release_date }}
@@ -16,6 +32,7 @@
         <p *ngIf="movie.overview" class="card-text" style="text-align: center">{{ movie.overview }}</p>
         <p *ngIf="!movie.overview" class="card-text" style="text-align: center; font-weight: 900;">Sem detalhes pra
           exibir!</p>
+
       </div>
     </div>
   </div>
@@ -28,8 +45,9 @@
   <button *ngIf="currentPage > 2" class="btn btn-primary" (click)="pageDown()">
     ← Página anterior
   </button>
-  <input type="text" [value]="currentPage - 1" readonly />
-  <button class="btn btn-primary" (click)="pageUp()">
+  <h2 *ngIf="currentPage >= totalResults">Ops...! Esse filme não existe!</h2>
+  <input *ngIf="currentPage <= totalPages && totalResults > 1" type="text" [value]="currentPage - 1" readonly />
+  <button *ngIf="currentPage <= totalPages && totalResults > 1" class="btn btn-primary" (click)="pageUp()">
     Próxima página →
   </button>
 </div>

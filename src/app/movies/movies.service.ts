@@ -18,7 +18,7 @@ export class MoviesService {
       return this.discoverMovies(page);
     }
     if (query) {
-      return this.searchMovies(query);
+      return this.searchMovies(query, page);
     }
     return this.discoverMovies(page);
   }
@@ -28,12 +28,11 @@ export class MoviesService {
     return this.http.get(discover);
   }
 
-  searchMovies(query: string) {
-    let search = `${this.searchUrl}?api_key=${this.apiKey}&language=${this.language}&query=${query}&page=1&include_adult=false`;
+  searchMovies(query: string, page: number) {
+    let search = `${this.searchUrl}?api_key=${this.apiKey}&language=${this.language}&query=${query}&page=${page}&include_adult=false`;
 
     if (query) {
       return this.http.get(search);
     }
-    return null;
   }
 }

@@ -1,12 +1,8 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { EventEmitter } from 'events';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 import { MoviesService } from './movies.service';
-import { Movie } from './movie';
-import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
-import { Button } from 'protractor';
-import { R3TargetBinder } from '@angular/compiler';
+import { Movie } from '../models/movie';
 
 @Component({
   selector: 'app-movies',
@@ -14,10 +10,11 @@ import { R3TargetBinder } from '@angular/compiler';
   styleUrls: ['./movies.component.css'],
 })
 export class MoviesComponent implements OnInit {
-  @Input() currentPage: number = 1;
+  currentPage: number = 1;
+  movieName: string;
+  totalResults: number;
   public movies: Movie[] = [];
   public totalPages: number;
-  public movieName: string;
   public imgUrl = 'https://image.tmdb.org/t/p/';
   public imgSize = 'w500/';
 
@@ -27,29 +24,48 @@ export class MoviesComponent implements OnInit {
     this.getMovies(undefined);
   }
 
-  pageUp() {
-    if (this.currentPage >= 1 && this.currentPage <= 500) {
+  pageUp = () => {
+    if (this.currentPage >= 1 && this.currentPage <= this.totalPages) {
       return this.getMovies((this.currentPage += 1 - 1));
     }
-  }
+  };
 
-  pageDown() {
+  pageDown = () => {
     if (this.currentPage > 0) {
       return this.getMovies((this.currentPage -= 1 + 1));
     }
-  }
+  };
 
   getMovies(page: number) {
     this.moviesService
       .getMovies(this.movieName, this.currentPage)
       .subscribe((paramName) => {
         page = this.currentPage;
-        if (page >= 1 && page <= 500) {
+        if (this.movieName) {
+          this.searchMovies(this.movieName, this.currentPage);
+        }
+        if ((page = 1000)) {
           this.currentPage++;
         }
         this.totalPages = (paramName as any).total_pages;
         this.movies = (paramName as any).results;
       });
+  }
+
+  searchMovies(query: string, page: number) {
+    this.moviesService.searchMovies(query, page).subscribe((response) => {
+      query = this.movieName;
+      page = this.currentPage;
+
+      this.totalResults = (response as any).total_results;
+      this.movies = [];
+      this.movies = response['results'];
+    });
+  }
+
+  queryListener(value: string) {
+    this.movieName = value;
+    this.searchMovies(value, 1);
   }
 
   getImage(path: string) {

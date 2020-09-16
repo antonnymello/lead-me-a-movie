@@ -8,6 +8,13 @@ h4:hover {
   transition: 0.4s;
 }
 
+/* Search */
+.input-group-text {
+  font-weight: 630;
+}
+
+/* Fim search */
+
 .row {
   width: 99%;
   margin-left: 10px;

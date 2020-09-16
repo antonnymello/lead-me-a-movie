@@ -9,15 +9,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MoviesService } from './movies/movies.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, MoviesComponent],
+  declarations: [AppComponent, HeaderComponent, MoviesComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     RouterModule,
+    AppRoutingModule,
   ],
   exports: [MoviesComponent, HeaderComponent],
   providers: [MoviesService, HttpClient],

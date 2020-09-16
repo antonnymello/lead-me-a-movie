@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 import { MoviesComponent } from './../movies/movies.component';
 
@@ -10,6 +10,13 @@ import { MoviesComponent } from './../movies/movies.component';
 })
 export class HeaderComponent implements OnInit {
   title = `LEAD me a Movie`;
+  route: Router;
+
+  backHome(event) {
+    if (event) {
+      return this.route.navigate(['movie']);
+    }
+  }
 
   constructor() {}
 
