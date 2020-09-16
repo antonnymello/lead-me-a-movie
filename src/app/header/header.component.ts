@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { MoviesComponent } from './../movies/movies.component';
 
@@ -9,14 +9,9 @@ import { MoviesComponent } from './../movies/movies.component';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  title = `LEAD me a Movie`;
-  route: Router;
+  title = `LEAD me to Movies`;
 
-  backHome(event) {
-    if (event) {
-      return this.route.navigate(['movie']);
-    }
-  }
+  router: Router;
 
   constructor() {}
 

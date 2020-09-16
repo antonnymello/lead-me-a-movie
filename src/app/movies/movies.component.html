@@ -45,9 +45,9 @@
   <button *ngIf="currentPage > 2" class="btn btn-primary" (click)="pageDown()">
     ← Página anterior
   </button>
-  <h2 *ngIf="currentPage >= totalResults">Ops...! Esse filme não existe!</h2>
-  <input *ngIf="currentPage <= totalPages && totalResults > 1" type="text" [value]="currentPage - 1" readonly />
-  <button *ngIf="currentPage <= totalPages && totalResults > 1" class="btn btn-primary" (click)="pageUp()">
+  <h2 *ngIf="totalResults == 0">Ops...! Esse filme não existe!<br></h2>
+  <input *ngIf="currentPage <= totalPages " type="text" [value]="currentPage - 1" readonly />
+  <button *ngIf="currentPage <= totalPages" class="btn btn-primary" (click)="pageUp()">
     Próxima página →
   </button>
 </div>

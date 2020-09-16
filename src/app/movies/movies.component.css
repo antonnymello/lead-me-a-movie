@@ -24,18 +24,24 @@ h4:hover {
   padding: 0;
   margin-bottom: 20px;
   margin-top: 30px;
-  height: 97%;
+  height: 95%;
 }
 
 .posterPath {
-  width: 325px;
-  height: 400px;
+  width: 250px;
+  height: 320px;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
 }
 
 
 
 .movies-info {
   font-weight: 600;
+  font-size: 12px;
 
   display: flex;
   flex-direction: row;
@@ -47,7 +53,7 @@ h4:hover {
 }
 
 .movies-info img {
-  width: 20px;
+  width: 12px;
   margin-right: 5px;
   margin-top: -4px;
 }

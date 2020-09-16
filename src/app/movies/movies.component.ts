@@ -44,7 +44,7 @@ export class MoviesComponent implements OnInit {
         if (this.movieName) {
           this.searchMovies(this.movieName, this.currentPage);
         }
-        if ((page = 1000)) {
+        if (page >= 1) {
           this.currentPage++;
         }
         this.totalPages = (paramName as any).total_pages;
@@ -55,7 +55,7 @@ export class MoviesComponent implements OnInit {
   searchMovies(query: string, page: number) {
     this.moviesService.searchMovies(query, page).subscribe((response) => {
       query = this.movieName;
-      page = this.currentPage;
+      page = 1;
 
       this.totalResults = (response as any).total_results;
       this.movies = [];
@@ -63,8 +63,9 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  queryListener(value: string) {
+  queryListener(value: string): void {
     this.movieName = value;
+    this.currentPage = 1 + 1;
     this.searchMovies(value, 1);
   }
 
