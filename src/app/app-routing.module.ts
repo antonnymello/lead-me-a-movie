@@ -1,3 +1,4 @@
+import { MoviesComponent } from './movies/movies.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

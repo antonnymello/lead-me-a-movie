@@ -23,6 +23,10 @@ export class MoviesComponent implements OnInit {
     this.getMovies(undefined);
   }
 
+  // ngOnChanges() {
+  //   this.movieName = //valor do component header que recebeu o input daqui
+  // }
+
   //Next page
   pageUp = () => {
     if (this.currentPage >= 1 && this.currentPage <= this.totalPages) {
@@ -46,13 +50,14 @@ export class MoviesComponent implements OnInit {
         if (this.movieName) {
           this.searchMovies(this.movieName, this.currentPage);
         }
-        if (page >= 1) {
-          this.currentPage++;
+        if (page) {
+          this.currentPage++ || this.currentPage--;
         }
         this.totalPages = (paramName as any).total_pages;
         this.movies = (paramName as any).results;
       });
   }
+  //Search functions bellow
   //search by query
   searchMovies(query: string, page: number) {
     this.moviesService.searchMovies(query, page).subscribe((response) => {
@@ -70,6 +75,7 @@ export class MoviesComponent implements OnInit {
     this.currentPage = 1 + 1;
     this.searchMovies(value, 1);
   }
+  //End of search functions
 
   //Get poster image
   getImage(path: string) {

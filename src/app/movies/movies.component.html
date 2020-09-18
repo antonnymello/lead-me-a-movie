@@ -27,7 +27,6 @@
         <p *ngIf="movie.overview" class="card-text" style="text-align: center">{{ movie.overview }}</p>
         <p *ngIf="!movie.overview" class="card-text" style="text-align: center; font-weight: 900;">Sem detalhes pra
           exibir!</p>
-
       </div>
     </div>
   </div>
@@ -42,8 +41,8 @@
     ← Página anterior
   </button>
   <h2 *ngIf="totalResults == 0">Ops...! Esse filme não existe!<br></h2>
-  <input *ngIf="currentPage <= totalPages " type="text" [value]="currentPage - 1" readonly />
-  <button *ngIf="currentPage <= totalPages" class="btn btn-primary" (click)="pageUp()">
+  <input *ngIf="currentPage <= totalPages && totalResults != 0 " type="text" [value]="currentPage - 1" readonly />
+  <button *ngIf="currentPage <= totalPages && totalResults != 0" class="btn btn-primary" (click)="pageUp()">
     Próxima página →
   </button>
 </div>
