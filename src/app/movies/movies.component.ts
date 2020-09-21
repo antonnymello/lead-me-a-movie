@@ -16,16 +16,28 @@ export class MoviesComponent implements OnInit {
   public totalPages: number;
   public imgUrl = 'https://image.tmdb.org/t/p/';
   public imgSize = 'w500/';
+  DEFAULT_FONT_SIZE = 13;
+  fontSize: number;
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService) {
+    this.fontSize = this.DEFAULT_FONT_SIZE;
+  }
 
   ngOnInit() {
     this.getMovies(undefined);
   }
+  //Accessibility tools
+  decrease() {
+    this.fontSize = this.fontSize * 0.8;
+  }
 
-  // ngOnChanges() {
-  //   this.movieName = //valor do component header que recebeu o input daqui
-  // }
+  increase() {
+    this.fontSize = this.fontSize * 1.2;
+  }
+
+  reset() {
+    this.fontSize = this.DEFAULT_FONT_SIZE;
+  }
 
   //Next page
   pageUp = () => {

@@ -1,3 +1,19 @@
+<!-- Accessibility tools -->
+<div class="accessibility-tools">
+  <h5>Acessibilidade:   </h5>
+  <button type="button" (click)="increase()">
+    A+
+  </button>
+  <button type="button" (click)="reset()">
+    AR
+  </button>
+  <button type="button" (click)="decrease()">
+    A-
+  </button>
+</div>
+
+
+
 <!-- Search -->
 <div class="input-group input-group-lg">
   <div class="input-group-prepend">
@@ -6,6 +22,8 @@
   <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" #box
     (keyup.enter)="queryListener(box.value)">
 </div>
+
+
 
 <!-- Movie cards -->
 <div class=" row">
@@ -20,12 +38,15 @@
           alt="'Poster do filme ' + {{movie.title}}" />
         <img *ngIf="!movie.poster_path" class="posterPath" src="https://placehold.it/500x740" />
         <div class="movies-info">
-          Data de Lançamento: {{ movie.release_date }}
+          <p [style.fontSize.px]="fontSize">Data de Lançamento: {{ movie.release_date }}</p>
           <span><img src="https://www.kindpng.com/picc/b/29/298871.png"
               alt="logo-star" />{{ movie.vote_average }}</span>
         </div>
-        <p *ngIf="movie.overview" class="card-text" style="text-align: center">{{ movie.overview }}</p>
-        <p *ngIf="!movie.overview" class="card-text" style="text-align: center; font-weight: 900;">Sem detalhes pra
+        <p [style.fontSize.px]="fontSize" *ngIf="movie.overview" class="card-text" style="text-align: center">
+          {{ movie.overview }}</p>
+        <p [style.fontSize.px]="fontSize" *ngIf="!movie.overview" class="card-text"
+          style="text-align: center; font-weight: 900;">Sem detalhes
+          pra
           exibir!</p>
       </div>
     </div>

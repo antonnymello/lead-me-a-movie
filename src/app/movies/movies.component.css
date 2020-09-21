@@ -15,6 +15,34 @@ h4:hover {
 
 /* Search end*/
 
+/* Accessibility buttons */
+.accessibility-tools {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+
+  background-color: #71B5F0;
+  padding-left: 14px;
+}
+
+.accessibility-tools h5 {
+  text-align: center;
+  color: white;
+
+  padding-top: 3px;
+}
+
+.accessibility-tools button {
+  border-color: #71B5F0;
+  background-color: #00577F;
+  color: white;
+
+  margin-right: 5px;
+
+  height: fit-content;
+}
+
 .row {
   width: 99%;
   margin-left: 10px;
@@ -50,6 +78,10 @@ h4:hover {
   margin-bottom: 12px;
   align-items: center;
 
+}
+
+.movies-info p {
+  margin-top: 20px;
 }
 
 .movies-info img {
