@@ -12,16 +12,16 @@ export class MoviesComponent implements OnInit {
   currentPage: number = 1;
   movieName: string;
   totalResults: number;
-  public movies: Movie[] = [];
-  public totalPages: number;
-  public imgUrl = 'https://image.tmdb.org/t/p/';
-  public imgSize = 'w500/';
-  DEFAULT_FONT_SIZE = 13;
+  movies: Movie[] = [];
+  totalPages: number;
+  imgUrl = 'https://image.tmdb.org/t/p/';
+  imgSize = 'w500/';
+  defaultFontSize = 13;
   fontSize: number;
   @ViewChild('box') box: ElementRef;
 
   constructor(private moviesService: MoviesService) {
-    this.fontSize = this.DEFAULT_FONT_SIZE;
+    this.fontSize = this.defaultFontSize;
   }
 
   ngOnInit() {
@@ -37,8 +37,9 @@ export class MoviesComponent implements OnInit {
   }
 
   reset() {
-    this.fontSize = this.DEFAULT_FONT_SIZE;
+    this.fontSize = this.defaultFontSize;
   }
+  //End of accessibility tools
 
   //Next page
   pageUp = () => {
@@ -96,6 +97,7 @@ export class MoviesComponent implements OnInit {
     this.box.nativeElement.value = '';
     this.movieName = '';
     this.currentPage = 1;
+    this.totalResults = 1;
     this.getMovies(undefined);
   }
 }
