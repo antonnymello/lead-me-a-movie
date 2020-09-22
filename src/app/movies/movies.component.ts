@@ -77,7 +77,7 @@ export class MoviesComponent implements OnInit {
   //send value of query to the search function
   queryListener(value: string): void {
     this.movieName = value;
-    this.currentPage = 1 + 1;
+    this.currentPage = 1;
     this.searchMovies(value, 1);
   }
   //End of search functions
@@ -91,9 +91,8 @@ export class MoviesComponent implements OnInit {
     return images;
   }
 
-  backHome(search: string) {
-    if (!search) {
-      this.getMovies(1);
-    }
+  backHome() {
+    this.movieName = '';
+    this.getMovies((this.currentPage = 1));
   }
 }
