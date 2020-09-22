@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { MoviesService } from './movies.service';
 import { Movie } from '../models/movie';
@@ -18,6 +18,7 @@ export class MoviesComponent implements OnInit {
   public imgSize = 'w500/';
   DEFAULT_FONT_SIZE = 13;
   fontSize: number;
+  @ViewChild('box') box: ElementRef;
 
   constructor(private moviesService: MoviesService) {
     this.fontSize = this.DEFAULT_FONT_SIZE;
@@ -91,8 +92,10 @@ export class MoviesComponent implements OnInit {
     return images;
   }
 
-  backHome() {
+  clear() {
+    this.box.nativeElement.value = '';
     this.movieName = '';
-    this.getMovies((this.currentPage = 1));
+    this.currentPage = 1;
+    this.getMovies(undefined);
   }
 }
