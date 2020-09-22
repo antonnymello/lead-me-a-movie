@@ -1,3 +1,7 @@
+<div class="topnav">
+  <a class=" active" (click)="backHome($event)">LEAD me to a Movie</a>
+</div>
+
 <!-- Accessibility tools -->
 <div class="accessibility-tools">
   <h5>Acessibilidade:   </h5>
@@ -11,8 +15,6 @@
     A-
   </button>
 </div>
-
-
 
 <!-- Search -->
 <div class="input-group input-group-lg">
@@ -55,14 +57,14 @@
 
 <!-- Pagination -->
 <div class="pagination">
-  <button *ngIf="currentPage == 1" class="btn btn-primary" (click)="pageDown()" disabled>
+  <button *ngIf="currentPage == 1 && totalResults != 0" class="btn btn-primary" (click)="pageDown()" disabled>
     ← Página anterior
   </button>
-  <button *ngIf="currentPage > 2" class="btn btn-primary" (click)="pageDown()">
+  <button *ngIf="currentPage >= 2 && totalResults != 0" class="btn btn-primary" (click)="pageDown()">
     ← Página anterior
   </button>
   <h2 *ngIf="totalResults == 0">Ops...! Esse filme não existe!<br></h2>
-  <input *ngIf="currentPage <= totalPages && totalResults != 0 " type="text" [value]="currentPage - 1" readonly />
+  <input *ngIf="currentPage <= totalPages && totalResults != 0 " type="text" [value]="currentPage" readonly />
   <button *ngIf="currentPage <= totalPages && totalResults != 0" class="btn btn-primary" (click)="pageUp()">
     Próxima página →
   </button>

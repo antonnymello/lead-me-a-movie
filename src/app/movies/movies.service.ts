@@ -15,9 +15,6 @@ export class MoviesService {
   //Redirects
   getMovies(query: string = '', page: number) {
     // let moviesURL = `${this.detailsUrl}popular?api_key=${this.apiKey}&language=${this.language}`;
-    if ((query = '')) {
-      return this.discoverMovies(page);
-    }
     if (query) {
       return this.searchMovies(query, page);
     }

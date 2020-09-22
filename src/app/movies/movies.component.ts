@@ -42,14 +42,14 @@ export class MoviesComponent implements OnInit {
   //Next page
   pageUp = () => {
     if (this.currentPage >= 1 && this.currentPage <= this.totalPages) {
-      return this.getMovies((this.currentPage += 1 - 1));
+      return this.getMovies(this.currentPage++);
     }
   };
 
   //Back page
   pageDown = () => {
     if (this.currentPage > 0) {
-      return this.getMovies((this.currentPage -= 1 + 1));
+      return this.getMovies(this.currentPage--);
     }
   };
 
@@ -59,12 +59,6 @@ export class MoviesComponent implements OnInit {
       .getMovies(this.movieName, this.currentPage)
       .subscribe((paramName) => {
         page = this.currentPage;
-        if (this.movieName) {
-          this.searchMovies(this.movieName, this.currentPage);
-        }
-        if (page) {
-          this.currentPage++ || this.currentPage--;
-        }
         this.totalPages = (paramName as any).total_pages;
         this.movies = (paramName as any).results;
       });
@@ -73,9 +67,8 @@ export class MoviesComponent implements OnInit {
   //search by query
   searchMovies(query: string, page: number) {
     this.moviesService.searchMovies(query, page).subscribe((response) => {
+      page >= 1;
       query = this.movieName;
-      page = 1;
-
       this.totalResults = (response as any).total_results;
       this.movies = [];
       this.movies = response['results'];
@@ -96,5 +89,11 @@ export class MoviesComponent implements OnInit {
       return images;
     }
     return images;
+  }
+
+  backHome(search: string) {
+    if (!search) {
+      this.getMovies(1);
+    }
   }
 }
