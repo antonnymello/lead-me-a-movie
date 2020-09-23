@@ -1,17 +1,38 @@
 <div class="topnav">
-  <a class=" active" (click)="clear()">LEAD me to a Movie</a>
+  <a
+    role="Botão home"
+    aria-label="Botão para voltar a tela inicial"
+    class="active"
+    (click)="clear()"
+    >LEAD me to a Movie</a
+  >
 </div>
 
 <!-- Accessibility tools -->
 <div class="accessibility-tools">
   <h5>Acessibilidade:   </h5>
-  <button type="button" (click)="increase()">
+  <button
+    role="botão"
+    aria-label="Aumentar tamanho da fonte"
+    type="button"
+    (click)="increase()"
+  >
     A+
   </button>
-  <button type="button" (click)="reset()">
+  <button
+    role="botão"
+    aria-label="Resetar tamanho da fonte"
+    type="button"
+    (click)="reset()"
+  >
     AR
   </button>
-  <button type="button" (click)="decrease()">
+  <button
+    role="botão"
+    aria-label="Diminuir tamanho da fonte"
+    type="button"
+    (click)="decrease()"
+  >
     A-
   </button>
 </div>
@@ -19,37 +40,90 @@
 <!-- Search -->
 <div class="input-group input-group-lg">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-lg">Procure por Filmes:</span>
+    <span
+      role="text"
+      aria-label="Procure por filmes"
+      class="input-group-text"
+      id="inputGroup-sizing-lg"
+      >Procure por Filmes:</span
+    >
   </div>
-  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" #box
-    (keyup.enter)="queryListener(box.value)">
+  <input
+    type="text"
+    class="form-control"
+    aria-label="Digite o nome do filme"
+    aria-describedby="inputGroup-sizing-sm"
+    #box
+    (keyup.enter)="queryListener(box.value)"
+  />
 </div>
 
-
-
 <!-- Movie cards -->
-<div class=" row">
+<div class="row">
   <div *ngFor="let movie of movies" class="col-sm-3">
     <div class="card">
-      <div class="card-body">
-        <h4 class="card-title" style="text-align: center">
+      <div role="filme card" aria-label="Cartão do filme" class="card-body">
+        <h4
+          role="titulo"
+          aria-label="Nome do filme"
+          class="card-title"
+          style="text-align: center"
+        >
           {{ movie.title }}
         </h4>
         <hr />
-        <img *ngIf="movie.poster_path" [src]="getImage(movie.poster_path)" class="posterPath"
-          alt="'Poster do filme ' + {{movie.title}}" />
-        <img *ngIf="!movie.poster_path" class="posterPath" src="https://placehold.it/500x740" />
+        <img
+          role="img"
+          aria-label="Poster do Filme selecionado"
+          *ngIf="movie.poster_path"
+          [src]="getImage(movie.poster_path)"
+          class="posterPath"
+          alt="'Poster do filme ' + {{ movie.title }}"
+        />
+        <img
+          role="img"
+          aria-label="Esse filme não tem poster"
+          *ngIf="!movie.poster_path"
+          class="posterPath"
+          src="https://placehold.it/500x740"
+        />
         <div class="movies-info">
-          <p [style.fontSize.px]="fontSize">Data de Lançamento: {{ movie.release_date }}</p>
-          <span><img src="https://www.kindpng.com/picc/b/29/298871.png"
-              alt="logo-star" />{{ movie.vote_average }}</span>
+          <p
+            role="paragrafo"
+            aria-label="Data de lançamento"
+            [style.fontSize.px]="fontSize"
+          >
+            Lançamento: {{ movie.release_date }}
+          </p>
+          <span
+            ><img
+              role="img"
+              aria-label="Estrela amarela representando rates do filme"
+              src="https://www.kindpng.com/picc/b/29/298871.png"
+              alt="logo-star"
+            />{{ movie.vote_average }}</span
+          >
         </div>
-        <p [style.fontSize.px]="fontSize" *ngIf="movie.overview" class="card-text" style="text-align: center">
-          {{ movie.overview }}</p>
-        <p [style.fontSize.px]="fontSize" *ngIf="!movie.overview" class="card-text"
-          style="text-align: center; font-weight: 900;">Sem detalhes
-          pra
-          exibir!</p>
+        <p
+          role="paragrafo"
+          aria-label="Sinopse do filme"
+          [style.fontSize.px]="fontSize"
+          *ngIf="movie.overview"
+          class="card-text"
+          style="text-align: center"
+        >
+          {{ movie.overview }}
+        </p>
+        <p
+          role="paragrafo"
+          aria-label="Esse filme não tem sinopse"
+          [style.fontSize.px]="fontSize"
+          *ngIf="!movie.overview"
+          class="card-text"
+          style="text-align: center; font-weight: 900"
+        >
+          Sem detalhes pra exibir!
+        </p>
       </div>
     </div>
   </div>
@@ -57,15 +131,41 @@
 
 <!-- Pagination -->
 <div class="pagination">
-  <button *ngIf="currentPage == 1 && totalResults != 0" class="btn btn-primary" (click)="pageDown()" disabled>
+  <button
+    role="button"
+    aria-label="Voltar para Página anterior"
+    *ngIf="currentPage == 1 && totalResults != 0"
+    class="btn btn-primary"
+    (click)="pageDown()"
+    hidden
+  >
     ← Página anterior
   </button>
-  <button *ngIf="currentPage >= 2 && totalResults != 0" class="btn btn-primary" (click)="pageDown()">
+  <button
+    role="button"
+    aria-label="Voltar para Página anterior"
+    *ngIf="currentPage >= 2 && totalResults != 0"
+    class="btn btn-primary"
+    (click)="pageDown()"
+  >
     ← Página anterior
   </button>
-  <h2 *ngIf="totalResults == 0">Ops...! Esse filme não existe!<br></h2>
-  <input *ngIf="currentPage <= totalPages && totalResults != 0 " type="text" [value]="currentPage" readonly />
-  <button *ngIf="currentPage <= totalPages && totalResults != 0" class="btn btn-primary" (click)="pageUp()">
+  <h2 *ngIf="totalResults == 0">Ops...! Esse filme não existe!<br /></h2>
+  <input
+    role="campo"
+    aria-label="Página atual"
+    *ngIf="currentPage <= totalPages && totalResults != 0"
+    type="text"
+    [value]="currentPage"
+    readonly
+  />
+  <button
+    role="button"
+    aria-label="Avançar para a próxima página"
+    *ngIf="currentPage <= totalPages && totalResults != 0"
+    class="btn btn-primary"
+    (click)="pageUp()"
+  >
     Próxima página →
   </button>
 </div>

@@ -8,6 +8,38 @@ h4:hover {
   transition: 0.4s;
 }
 
+
+/* Top Nav */
+.topnav {
+  overflow: hidden;
+  background-color: #007db8;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a.active {
+  background-color: #007db8;
+  color: white;
+  font-weight: bold;
+
+
+
+
+}
+
+.topnav a.active:hover {
+  background-color: #00577f;
+  color: white;
+}
+
 /* Search */
 .input-group-text {
   font-weight: 630;
@@ -106,35 +138,4 @@ h4:hover {
   width: 40px;
   background-color: rgb(237, 237, 237);
   text-align: center;
-}
-
-
-.topnav {
-  overflow: hidden;
-  background-color: #007db8;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 6px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a.active {
-  background-color: #007db8;
-  color: white;
-  font-weight: bold;
-
-
-
-
-}
-
-.topnav a.active:hover {
-  background-color: #00577f;
-  color: white;
 }

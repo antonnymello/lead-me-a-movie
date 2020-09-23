@@ -27,6 +27,16 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
     this.getMovies(undefined);
   }
+
+  //Home button
+  clear() {
+    this.box.nativeElement.value = '';
+    this.movieName = '';
+    this.currentPage = 1;
+    this.totalResults = 1;
+    this.getMovies(undefined);
+  }
+
   //Accessibility tools
   decrease() {
     this.fontSize = this.fontSize * 0.8;
@@ -91,13 +101,5 @@ export class MoviesComponent implements OnInit {
       return images;
     }
     return images;
-  }
-
-  clear() {
-    this.box.nativeElement.value = '';
-    this.movieName = '';
-    this.currentPage = 1;
-    this.totalResults = 1;
-    this.getMovies(undefined);
   }
 }
