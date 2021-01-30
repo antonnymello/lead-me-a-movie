@@ -39,11 +39,15 @@ export class MoviesComponent implements OnInit {
 
   //Accessibility tools
   decrease() {
-    this.fontSize = this.fontSize * 0.8;
+    if (this.fontSize <= 22 && this.fontSize > 12) {
+      this.fontSize = this.fontSize * 0.8;
+    }
   }
 
   increase() {
+    if(this.fontSize < 18){
     this.fontSize = this.fontSize * 1.2;
+    }
   }
 
   reset() {
